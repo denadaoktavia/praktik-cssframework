@@ -14,9 +14,44 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
     />
-  </head>
+    <style>
+      .dark-mode {
+        background-color: #121212 !important;
+      }
 
-  <body>
+      .toggle-btn {
+        padding: 8px 12px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        background-color: white;
+      }
+
+      .dark-mode .toggle-btn {
+        background-color: #121212;
+      }
+
+      .dark-mode .wave-path,
+      footer {
+        background-color: #2c2c2c;
+        fill: #2c2c2c;
+      }
+
+      .dark-mode h1.title,
+      .dark-mode .card-title,
+      .dark-mode .card a.text-dark,
+      .dark-mode .card-text small {
+        color: white !important;
+      }
+
+      .dark-mode .card {
+        background-color: #2c2c2c;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body onload="startTime()">
     <!-- Header -->
     <nav
       style="background-color: #d8b9f6"
@@ -25,9 +60,7 @@
       <div class="container d-flex justify-content-between align-items-center">
         <!-- Logo -->
         <a class="navbar-brand" href="/">
-          <h5 class="fs-3 fw-bold">
-            Denada oktavia
-          </h5>
+          <h5 class="fs-3 fw-bold">Denada oktavia</h5>
         </a>
 
         <!-- Hamburger Menu -->
@@ -63,6 +96,7 @@
             </li>
           </ul>
         </div>
+        <button id="toggleMode" class="toggle-btn ms-3">🌙</button>
       </div>
     </nav>
 
@@ -78,7 +112,17 @@
             class="col-lg-6 col-md-6 col-sm-12 d-flex flex-column justify-content-center gap-1"
           >
             <h1 class="display-5 fw-bold">Laman Hari Ini</h1>
-            <p class="fs-5 fw-normal">Laman Hari Ini adalah ruang digital yang menyajikan berbagai cerita, inspirasi, dan informasi segar setiap hari. Dengan gaya santai dan mudah dipahami, situs ini hadir sebagai teman singgah untuk kamu yang ingin membaca sesuatu yang ringan, bermanfaat, atau sekadar mengisi waktu luang.</p>
+            <p class="fs-5 fw-normal">
+              Laman Hari Ini adalah ruang digital yang menyajikan berbagai
+              cerita, inspirasi, dan informasi segar setiap hari. Dengan gaya
+              santai dan mudah dipahami, situs ini hadir sebagai teman singgah
+              untuk kamu yang ingin membaca sesuatu yang ringan, bermanfaat,
+              atau sekadar mengisi waktu luang.
+            </p>
+            <p class="fs-5 fw-normal d-flex flex-column">
+              <span id="date"></span>
+              <span id="time"></span>
+            </p>
             <button
               type="button"
               class="btn btn-outline-dark btn-lg fw-semibold w-25"
@@ -96,20 +140,30 @@
     <!-- Article Section -->
     <section id="article" style="padding-top: 75px">
       <div class="container py-5 text-center">
-        <h1 class="display-5 fw-bold">Article</h1>
+        <h1 class="display-5 fw-bold title">Article</h1>
         <article class="row g-4 justify-content-center mt-5">
           <div class="col-12 col-md-6 col-lg-3">
             <div class="card h-100">
               <img src="/Artikel 1.jpeg" class="card-img-top" alt="..." />
               <div class="card-body d-flex flex-column justify-content-between">
-                <h5 class="card-title">GTeknologi AI Semakin Dekat dengan Kehidupan Sehari-hari</h5>
-                <p class="card-text">Perkembangan teknologi kecerdasan buatan (AI) kini bukan lagi sekadar imajinasi fiksi ilmiah. Dari rumah pintar yang bisa mengatur suhu ruangan secara otomatis, hingga asisten digital yang membantu menjadwalkan kegiatan harian, AI telah menjadi bagian yang tak terpisahkan dari gaya hidup modern.
-
-                    Tak hanya itu, AI juga semakin banyak digunakan dalam dunia kesehatan, pendidikan, dan transportasi. Sistem diagnosis berbasis AI, misalnya, mampu mendeteksi penyakit dengan akurasi tinggi. Semua ini menunjukkan bahwa integrasi AI ke kehidupan manusia akan terus berkembang dan berperan penting di masa depan.</p>
+                <h5 class="card-title">
+                  GTeknologi AI Semakin Dekat dengan Kehidupan Sehari-hari
+                </h5>
+                <p class="card-text">
+                  Perkembangan teknologi kecerdasan buatan (AI) kini bukan lagi
+                  sekadar imajinasi fiksi ilmiah. Dari rumah pintar yang bisa
+                  mengatur suhu ruangan secara otomatis, hingga asisten digital
+                  yang membantu menjadwalkan kegiatan harian, AI telah menjadi
+                  bagian yang tak terpisahkan dari gaya hidup modern. Tak hanya
+                  itu, AI juga semakin banyak digunakan dalam dunia kesehatan,
+                  pendidikan, dan transportasi. Sistem diagnosis berbasis AI,
+                  misalnya, mampu mendeteksi penyakit dengan akurasi tinggi.
+                  Semua ini menunjukkan bahwa integrasi AI ke kehidupan manusia
+                  akan terus berkembang dan berperan penting di masa depan.
+                </p>
                 <p class="card-text">
                   <small class="text-body-secondary"
-                    >Penulis: Rina Fadillah
-                    Tanggal: 12 April 2025</small
+                    >Penulis: Rina Fadillah Tanggal: 12 April 2025</small
                   >
                 </p>
               </div>
@@ -119,12 +173,26 @@
             <div class="card h-100">
               <img src="/Artikel 2.jpeg" class="card-img-top" alt="..." />
               <div class="card-body d-flex flex-column justify-content-between">
-                <h5 class="card-title"> Mengenal Arsitektur Ramah Lingkungan di Tengah Kota</h5>
-                <p class="card-text">Desain arsitektur kini tak hanya mementingkan estetika, tapi juga keberlanjutan. Arsitektur ramah lingkungan atau green architecture hadir sebagai solusi untuk mengurangi dampak negatif pembangunan terhadap lingkungan. Mulai dari pemanfaatan cahaya alami, ventilasi silang, hingga penggunaan bahan bangunan daur ulang, semuanya menjadi bagian dari pendekatan ini.Di kota-kota besar, konsep ini semakin populer karena mampu menekan konsumsi energi dan mendukung gaya hidup yang lebih berkelanjutan. Bangunan-bangunan hijau juga memberikan kenyamanan lebih bagi penghuninya, serta menciptakan ruang yang harmonis dengan alam meskipun berada di tengah hiruk pikuk kota.</p>
+                <h5 class="card-title">
+                  Mengenal Arsitektur Ramah Lingkungan di Tengah Kota
+                </h5>
+                <p class="card-text">
+                  Desain arsitektur kini tak hanya mementingkan estetika, tapi
+                  juga keberlanjutan. Arsitektur ramah lingkungan atau green
+                  architecture hadir sebagai solusi untuk mengurangi dampak
+                  negatif pembangunan terhadap lingkungan. Mulai dari
+                  pemanfaatan cahaya alami, ventilasi silang, hingga penggunaan
+                  bahan bangunan daur ulang, semuanya menjadi bagian dari
+                  pendekatan ini.Di kota-kota besar, konsep ini semakin populer
+                  karena mampu menekan konsumsi energi dan mendukung gaya hidup
+                  yang lebih berkelanjutan. Bangunan-bangunan hijau juga
+                  memberikan kenyamanan lebih bagi penghuninya, serta
+                  menciptakan ruang yang harmonis dengan alam meskipun berada di
+                  tengah hiruk pikuk kota.
+                </p>
                 <p class="card-text">
                   <small class="text-body-secondary"
-                    >Penulis: Budi Setiawan
-                    Tanggal: 5 April 2025</small
+                    >Penulis: Budi Setiawan Tanggal: 5 April 2025</small
                   >
                 </p>
               </div>
@@ -134,14 +202,23 @@
             <div class="card h-100">
               <img src="/Artikel 3.jpeg" class="card-img-top" alt="..." />
               <div class="card-body d-flex flex-column justify-content-between">
-                <h5 class="card-title">Wisata Alam yang Wajib Dikunjungi Tahun Ini</h5>
-                <p class="card-text">Setelah masa pandemi, tren liburan bergeser ke arah wisata alam yang memberikan ketenangan dan pengalaman menyatu dengan alam. Tempat-tempat seperti pantai tersembunyi, air terjun alami, hingga hutan tropis kini menjadi incaran wisatawan lokal maupun mancanegara.
-
-                    Selain menawarkan keindahan yang menakjubkan, wisata alam juga mendukung pariwisata berkelanjutan. Dengan mengedepankan pelestarian lingkungan dan pemberdayaan masyarakat sekitar, pengalaman liburan pun menjadi lebih bermakna.</p>
+                <h5 class="card-title">
+                  Wisata Alam yang Wajib Dikunjungi Tahun Ini
+                </h5>
+                <p class="card-text">
+                  Setelah masa pandemi, tren liburan bergeser ke arah wisata
+                  alam yang memberikan ketenangan dan pengalaman menyatu dengan
+                  alam. Tempat-tempat seperti pantai tersembunyi, air terjun
+                  alami, hingga hutan tropis kini menjadi incaran wisatawan
+                  lokal maupun mancanegara. Selain menawarkan keindahan yang
+                  menakjubkan, wisata alam juga mendukung pariwisata
+                  berkelanjutan. Dengan mengedepankan pelestarian lingkungan dan
+                  pemberdayaan masyarakat sekitar, pengalaman liburan pun
+                  menjadi lebih bermakna.
+                </p>
                 <p class="card-text">
                   <small class="text-body-secondary"
-                    >Penulis: Maya Pramudita
-                    Tanggal: 10 April 2025</small
+                    >Penulis: Maya Pramudita Tanggal: 10 April 2025</small
                   >
                 </p>
               </div>
@@ -151,17 +228,25 @@
             <div class="card h-100">
               <img src="/Artikel 4.jpeg" class="card-img-top" alt="..." />
               <div class="card-body d-flex flex-column justify-content-between">
-                <h5 class="card-title">Kuliner Nusantara yang Mendunia: Rendang hingga Tempe</h5>
-                <p class="card-text">Kuliner Indonesia telah lama dikenal kaya akan cita rasa dan rempah-rempah. Rendang, yang pernah dinobatkan sebagai makanan terenak di dunia, kini hadir di berbagai restoran internasional. Tempe, makanan tradisional berbahan dasar kedelai, bahkan telah menjadi favorit di kalangan vegan di luar negeri.
-
-                    Popularitas kuliner nusantara tidak hanya membawa rasa Indonesia ke panggung dunia, tapi juga menjadi peluang ekonomi bagi para pelaku industri makanan. Dengan pengemasan modern dan inovasi penyajian, makanan-makanan ini terus menarik minat pecinta kuliner global.</p>
+                <h5 class="card-title">
+                  Kuliner Nusantara yang Mendunia: Rendang hingga Tempe
+                </h5>
+                <p class="card-text">
+                  Kuliner Indonesia telah lama dikenal kaya akan cita rasa dan
+                  rempah-rempah. Rendang, yang pernah dinobatkan sebagai makanan
+                  terenak di dunia, kini hadir di berbagai restoran
+                  internasional. Tempe, makanan tradisional berbahan dasar
+                  kedelai, bahkan telah menjadi favorit di kalangan vegan di
+                  luar negeri. Popularitas kuliner nusantara tidak hanya membawa
+                  rasa Indonesia ke panggung dunia, tapi juga menjadi peluang
+                  ekonomi bagi para pelaku industri makanan. Dengan pengemasan
+                  modern dan inovasi penyajian, makanan-makanan ini terus
+                  menarik minat pecinta kuliner global.
+                </p>
                 <p class="card-text">
                   <small class="text-body-secondary"
-                    >Penulis: Agus Ramadhan
-                    Tanggal: 30 Maret 2025
-                    
-                    </small
-                  >
+                    >Penulis: Agus Ramadhan Tanggal: 30 Maret 2025
+                  </small>
                 </p>
               </div>
             </div>
@@ -173,7 +258,7 @@
     <!-- Gallery Section -->
     <section id="gallery" style="padding-top: 75px">
       <div class="container py-5 text-center">
-        <h1 class="display-5 fw-bold">Gallery</h1>
+        <h1 class="display-5 fw-bold title">Gallery</h1>
         <div
           id="carouselExampleInterval"
           class="carousel slide mt-5"
@@ -229,9 +314,7 @@
       <div
         class="container d-flex flex-column flex-md-row justify-content-between align-items-center"
       >
-        <p class="mb-2 mb-md-0 fs-6 fw-semibold">
-          &copy; Ciptify™
-        </p>
+        <p class="mb-2 mb-md-0 fs-6 fw-semibold">&copy;2025 Ciptify™</p>
         <div class="d-flex gap-4">
           <a href="#" class="text-white fs-4"><i class="bi bi-whatsapp"></i></a>
           <a href="#" class="text-white fs-4"><i class="bi bi-facebook"></i></a>
@@ -247,5 +330,63 @@
       integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
       crossorigin="anonymous"
     ></script>
+    <script>
+      // Date
+      const now = new Date();
+      const days = [
+        "Minggu",
+        "Senin",
+        "Selasa",
+        "Rabu",
+        "Kamis",
+        "Jumat",
+        "Sabtu",
+      ];
+      const months = [
+        "Januari",
+        "Februari",
+        "Maret",
+        "April",
+        "Mei",
+        "Juni",
+        "Juli",
+        "Agustus",
+        "September",
+        "Oktober",
+        "November",
+        "Desember",
+      ];
+      const date = `${days[now.getDay()]}, ${now.getDate()} ${
+        months[now.getMonth()]
+      } ${now.getFullYear()}`;
+      document.getElementById("date").innerHTML = date;
+
+      // Clock
+      function startTime() {
+        const today = new Date();
+        let j = today.getHours();
+        let m = today.getMinutes();
+        let d = today.getSeconds();
+        m = checkTime(m);
+        d = checkTime(d);
+        document.getElementById("time").innerHTML = j + ":" + m + ":" + d;
+        setTimeout(startTime, 1000);
+      }
+      function checkTime(i) {
+        if (i < 10) {
+          i = "0" + i;
+        }
+        return i;
+      }
+
+      // Dark Mode
+      const toggleBtn = document.getElementById("toggleMode");
+      const body = document.body;
+
+      toggleBtn.addEventListener("click", function () {
+        body.classList.toggle("dark-mode");
+        toggleBtn.innerHTML = body.classList.contains("dark-mode") ? "☀" : "🌙";
+      });
+    </script>
   </body>
 </html>
